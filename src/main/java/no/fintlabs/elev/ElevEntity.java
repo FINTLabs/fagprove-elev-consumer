@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Elev {
+public class ElevEntity {
 
     @Id
     @Column(updatable = false, nullable = false, unique = true)
