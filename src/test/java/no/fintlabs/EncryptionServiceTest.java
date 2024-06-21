@@ -1,6 +1,5 @@
 package no.fintlabs;
 
-import no.fintlabs.exception.EncryptionException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,14 +21,14 @@ public class EncryptionServiceTest {
     }
 
     @Test
-    public void encryptAndDecrypt() throws EncryptionException {
+    public void encryptAndDecrypt() {
         String encryptedString = encryptionService.encrypt(originalString);
         String decryptedString = encryptionService.decrypt(encryptedString);
         assertEquals(originalString, decryptedString, "encrpytion and decryption works");
     }
 
     @Test
-    public void encryptDoesntMatchOriginalString() throws EncryptionException {
+    public void encryptDoesntMatchOriginalString() {
         String encryptedString = encryptionService.encrypt(originalString);
         assertNotEquals(originalString, encryptedString, "encryption alters the original string");
     }

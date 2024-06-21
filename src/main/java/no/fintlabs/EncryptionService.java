@@ -1,6 +1,5 @@
 package no.fintlabs;
 
-import no.fintlabs.exception.EncryptionException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +22,7 @@ public class EncryptionService {
         this.secretKey = new SecretKeySpec(Base64.getDecoder().decode(secretKeyBase64), ALGORITHM);
     }
 
-    public String encrypt(String data) throws EncryptionException {
+    public String encrypt(String data) {
         try {
             Cipher cipher = Cipher.getInstance(TRANSFORMATION);
             byte[] iv = generateIV();
@@ -35,11 +34,11 @@ public class EncryptionService {
 
             return Base64.getEncoder().encodeToString(combinedData);
         } catch (Exception e) {
-            throw new EncryptionException(e);
+            throw new RuntimeException("Failed to encrypt data", e);
         }
     }
 
-    public String decrypt(String encryptedData) throws EncryptionException {
+    public String decrypt(String encryptedData) {
         try {
             Cipher cipher = Cipher.getInstance(TRANSFORMATION);
             byte[] combinedData = Base64.getDecoder().decode(encryptedData);
@@ -52,7 +51,7 @@ public class EncryptionService {
 
             return new String(decryptedData);
         } catch (Exception e) {
-            throw new EncryptionException(e);
+            throw new RuntimeException("Failed to decrypt data", e);
         }
     }
 
