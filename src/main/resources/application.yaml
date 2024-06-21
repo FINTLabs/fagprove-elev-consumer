@@ -1,4 +1,9 @@
 spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://idp.felleskomponent.no/nidp/oauth/nam
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
