@@ -1,6 +1,7 @@
 package no.fintlabs.elev;
 
 import lombok.RequiredArgsConstructor;
+import no.fintlabs.exception.ElevNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class ElevService {
         return elevRepository.findById(id).map(elevEntity -> {
             // TODO: Implement decryption
             return elevEntity;
-        }).orElseThrow(RuntimeException::new);
+        }).orElseThrow(ElevNotFoundException::new);
     }
 
     public ElevEntity encryptAndSaveWithNewId(ElevEntity elev) {
@@ -43,7 +44,7 @@ public class ElevService {
                 .map(existingElev -> {
                     newElev.setId(id);
                     return encryptAndSave(newElev);
-                }).orElseThrow(RuntimeException::new); // TODO: Implement custom exceptions and handler
+                }).orElseThrow(ElevNotFoundException::new); // TODO: Implement custom exceptions and handler
     }
 
     public void deleteElev(String id) {
