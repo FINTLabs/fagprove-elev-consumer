@@ -1,8 +1,9 @@
 package no.fintlabs.elev;
 
-import org.springframework.stereotype.Service;
+import no.fintlabs.elev.repository.ElevEntity;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class ElevKafkaProducer {
 
     public void publishElev(ElevEntity elev) {
