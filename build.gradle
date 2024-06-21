@@ -30,6 +30,8 @@ dependencies {
 //	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
+	implementation 'org.springdoc:springdoc-openapi-starter-webflux-ui:2.4.0'
+
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
