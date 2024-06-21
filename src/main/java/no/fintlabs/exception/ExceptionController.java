@@ -12,4 +12,9 @@ public class ExceptionController {
         return ResponseEntity.notFound().build();
     }
 
+    @ExceptionHandler(ElevValidationException.class)
+    public ResponseEntity<String> elevValidationFailed(Exception e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
+
 }
