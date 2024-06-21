@@ -1,7 +1,8 @@
-package no.fintlabs.elev;
+package no.fintlabs.elev.service;
 
 import lombok.RequiredArgsConstructor;
 import no.fintlabs.EncryptionService;
+import no.fintlabs.elev.repository.ElevEntity;
 import no.fintlabs.exception.EncryptionException;
 import org.springframework.stereotype.Service;
 

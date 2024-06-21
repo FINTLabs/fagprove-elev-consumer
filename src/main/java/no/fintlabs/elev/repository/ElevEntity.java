@@ -1,4 +1,4 @@
-package no.fintlabs.elev;
+package no.fintlabs.elev.repository;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

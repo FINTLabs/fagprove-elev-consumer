@@ -1,6 +1,9 @@
 package no.fintlabs.elev;
 
 import lombok.RequiredArgsConstructor;
+import no.fintlabs.elev.repository.ElevEntity;
+import no.fintlabs.elev.repository.ElevRepository;
+import no.fintlabs.elev.service.ElevService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
