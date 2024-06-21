@@ -27,6 +27,7 @@ public class ElevValidationService {
         validateBirthNumber(elev.getBirthNumber());
         validateEmail(elev.getEmail());
         validateMobileNumber(elev.getMobileNumber());
+        validateAverageGrades(elev.getAverageGrades());
     }
 
     private void validateName(String name) {
@@ -59,6 +60,17 @@ public class ElevValidationService {
         }
         if (checkIfAlreadyExists(mobileNumber, elevRepository::findAllMobileNumbers)) {
             throw new ElevValidationException("Mobile number already exists");
+        }
+    }
+
+    private void validateAverageGrades(String averageGrades) {
+        if (averageGrades == null) {
+            throw new ElevValidationException("Average grades must not be null.");
+        }
+        try {
+            Float.parseFloat(averageGrades);
+        } catch (NumberFormatException e) {
+            throw new ElevValidationException("Average grades must be a valid float number.");
         }
     }
 
