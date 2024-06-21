@@ -33,17 +33,16 @@ public class ElevService {
     }
 
     public ElevEntity encryptAndSaveWithNewId(ElevEntity elev) {
+        elevValidationService.validateElev(elev);
         elev.setId(UUID.randomUUID().toString());
         return encryptAndSave(elev);
     }
 
     public ElevEntity encryptAndSave(ElevEntity elev) {
-        elevValidationService.validateElev(elev);
         ElevEntity encryptedElev = elevEncryptionService.encrypt(elev);
         elevKafkaProducer.publishElev(encryptedElev);
         return elevRepository.save(encryptedElev);
     }
-
 
 
     public ElevEntity updateElev(String id, ElevEntity newElev) {
