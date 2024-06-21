@@ -1,0 +1,40 @@
+apiVersion: fintlabs.no/v1alpha1
+kind: Application
+metadata:
+  name: fagprove-elev-consumer
+  namespace: fintlabs-no
+  labels:
+    app.kubernetes.io/name: fagprove-elev-consumer
+    app.kubernetes.io/instance: fagprove-elev-consumer_fintlabs_no
+    app.kubernetes.io/version: latest
+    app.kubernetes.io/component: consumer
+    app.kubernetes.io/part-of: fint-core
+    fintlabs.no/team: core
+    fintlabs.no/org-id: fintlabs.no
+spec:
+  port: 8080
+  orgId: fintlabs.no
+  image: ghcr.io/fintlabs/fagprove-elev-consumer:latest
+  prometheus:
+    enabled: true
+    port: "8080"
+    path: /prometheus
+  database:
+    database: fint-core
+  url:
+    hostname: fagprove.fintlabs.no
+  ingress:
+    enabled: true
+    basePath: /elev
+  env:
+    - name: JAVA_TOOL_OPTIONS
+      value: '-XX:+ExitOnOutOfMemoryError -Xmx525M'
+  onePassword:
+    itemPath: "vaults/aks-beta-vault/items/fagprove-elev-consumer"
+  resources:
+    limits:
+      memory: "1Gi"
+      cpu: "500m"
+    requests:
+      memory: "500Mi"
+      cpu: "100m"
