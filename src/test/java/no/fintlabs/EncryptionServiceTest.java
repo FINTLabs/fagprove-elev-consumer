@@ -13,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 @ExtendWith(MockitoExtension.class)
 public class EncryptionServiceTest {
 
-    @InjectMocks
     private EncryptionService encryptionService;
 
     private String originalString;
@@ -21,6 +20,7 @@ public class EncryptionServiceTest {
     @BeforeEach
     void setUp() {
         originalString = "I want to be encrypted!";
+        encryptionService = new EncryptionService("otcvNHi1W8EWTR+2rNQw9btu1wm2Jqdh1gADZ4GSxA4=");
     }
 
     @Test

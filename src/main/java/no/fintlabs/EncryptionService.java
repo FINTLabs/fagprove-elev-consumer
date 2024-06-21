@@ -19,9 +19,8 @@ public class EncryptionService {
     private static final int IV_SIZE = 16;
     private final SecretKey secretKey;
 
-    public EncryptionService() {
-        byte[] key = Base64.getDecoder().decode(System.getenv("fint.encryption.secret-key"));
-        this.secretKey = new SecretKeySpec(key, ALGORITHM);
+    public EncryptionService(@Value("${fint.encryption.secret-key}") String secretKeyBase64) {
+        this.secretKey = new SecretKeySpec(Base64.getDecoder().decode(secretKeyBase64), ALGORITHM);
     }
 
     public String encrypt(String data) throws EncryptionException {
