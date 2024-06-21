@@ -16,13 +16,14 @@ public class ElevService {
     private final ElevKafkaProducer elevKafkaProducer;
 
     public List<ElevEntity> getAllDecryptedElev() {
-        // TODO: Implement decryption
-        return elevRepository.findAll();
+        return elevRepository.findAll().stream()
+                .map(elevEncryptionService::decrypt)
+                .toList();
     }
 
     public ElevEntity getDecryptedElev(String id) {
         return elevRepository.findById(id).map(elevEntity -> {
-            // TODO: Implement decryption
+            elevEncryptionService.decrypt(elevEntity);
             return elevEntity;
         }).orElseThrow(ElevNotFoundException::new);
     }
@@ -44,7 +45,7 @@ public class ElevService {
                 .map(existingElev -> {
                     newElev.setId(id);
                     return encryptAndSave(newElev);
-                }).orElseThrow(ElevNotFoundException::new); // TODO: Implement custom exceptions and handler
+                }).orElseThrow(ElevNotFoundException::new);
     }
 
     public void deleteElev(String id) {
