@@ -1,6 +1,9 @@
-package no.fintlabs.elev;
+package no.fintlabs.elev.service;
 
 import lombok.RequiredArgsConstructor;
+import no.fintlabs.elev.ElevKafkaProducer;
+import no.fintlabs.elev.repository.ElevEntity;
+import no.fintlabs.elev.repository.ElevRepository;
 import no.fintlabs.exception.ElevNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,7 @@ public class ElevService {
     private final ElevRepository elevRepository;
     private final ElevEncryptionService elevEncryptionService;
     private final ElevKafkaProducer elevKafkaProducer;
+    private final ElevValidationService elevValidationService;
 
     public List<ElevEntity> getAllDecryptedElev() {
         return elevRepository.findAll().stream()
@@ -34,10 +38,12 @@ public class ElevService {
     }
 
     public ElevEntity encryptAndSave(ElevEntity elev) {
+        elevValidationService.validateElev(elev);
         ElevEntity encryptedElev = elevEncryptionService.encrypt(elev);
         elevKafkaProducer.publishElev(encryptedElev);
         return elevRepository.save(encryptedElev);
     }
+
 
 
     public ElevEntity updateElev(String id, ElevEntity newElev) {
