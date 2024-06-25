@@ -23,6 +23,11 @@ spec:
     database: fint-core
   url:
     hostname: fagprove.fintlabs.no
+  kafka:
+    enabled: true
+    acls:
+      - topic: 'fintlabs-no.fagprove.*'
+        permission: admin
   ingress:
     enabled: true
     basePath: /api/elev

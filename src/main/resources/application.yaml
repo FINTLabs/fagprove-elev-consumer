@@ -1,4 +1,15 @@
+fint:
+  kafka:
+    application-id: fagprove-elev-consumer
+    enable-ssl: true
+    topic:
+      org-id: fintlabs.no
+      domain-context: fagprove
+
 spring:
+  kafka:
+    consumer:
+      group-id: fagprove-elev-consumer
   security:
     oauth2:
       resourceserver:

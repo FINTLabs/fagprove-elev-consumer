@@ -1,4 +1,18 @@
+fint:
+  kafka:
+    application-id: fagprove-elev-consumer
+    enable-ssl: false
+    default-replicas: 1
+    topic:
+      org-id: fintlabs.no
+      domain-context: fagprove
+
+
 spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: fagprove-elev-consumer
   security:
     oauth2:
       resourceserver:
