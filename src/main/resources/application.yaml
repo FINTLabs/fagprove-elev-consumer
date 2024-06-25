@@ -17,4 +17,4 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
   mvc:
     servlet:
-      path: /elev
+      path: /api/elev

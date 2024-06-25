@@ -25,7 +25,7 @@ spec:
     hostname: fagprove.fintlabs.no
   ingress:
     enabled: true
-    basePath: /elev
+    basePath: /api/elev
     middlewares:
       - fagprove-sso
   env:
